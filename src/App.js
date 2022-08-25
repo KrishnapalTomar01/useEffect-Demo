@@ -16,8 +16,7 @@ function App() {
   const onClickHandler = () => {
     users.pop();
     console.log(users);
-    const newUsers = [...users];
-    setUsers(newUsers);
+    setUsers([...users]);
   }
   return (
     <div className="App">
