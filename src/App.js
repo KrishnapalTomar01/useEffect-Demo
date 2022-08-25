@@ -1,22 +1,28 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import UserDisplay from './UserDisplay';
 
 function App() {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-      fetch('https://jsonplaceholder.typicode.com/users')
-          .then((response) => response.json())
-          .then((usersData) => setUsers(usersData));
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((usersData) => setUsers(usersData));
   }, []);
   // fetch('https://jsonplaceholder.typicode.com/users')
   //   .then((response) => response.json())
   //   .then((usersData) => setUsers(usersData));
-  // users.pop();
-  // setUsers(users);
+
+  const onClickHandler = () => {
+    users.pop();
+    console.log(users);
+    const newUsers = [...users];
+    setUsers(newUsers);
+  }
   return (
     <div className="App">
-       <UserDisplay users={users}/>
+      <UserDisplay users={users} />
+      <button onClick={onClickHandler}>remove user</button>
     </div>
   );
 }
